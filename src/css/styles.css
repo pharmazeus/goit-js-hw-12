@@ -1,0 +1,9 @@
+@import url(./utils/reset.css);
+
+@import url(./base/container.css);
+
+@import url(./components/word-input.css);
+@import url(./components/search-button.css);
+@import url(./components/container-search-form.css);
+@import url(./components/dynamic-gallery.css);
+@import url(./components/loader.css);
