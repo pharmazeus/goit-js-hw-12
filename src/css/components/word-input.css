@@ -22,7 +22,3 @@
   border-color: #000;
   cursor: pointer;
 }
-
-input[type='search']::-ms-clear {
-  display: none;
-}

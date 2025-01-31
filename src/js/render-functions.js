@@ -1,10 +1,11 @@
-export const createGalleryCardTemplate = imgInfo => {
-  return `<li class="gallery-item">
+export const createGalleryCardTemplate = images => {
+  return images
+    .map(
+      imgInfo => `<li class="gallery-item">
         <a class = 'large-img' href="${imgInfo.largeImageURL}">
-          <img src="${imgInfo.webformatURL}" alt="${imgInfo.tags
-    .split(', ')
-    .slice(0, 4)
-    .join(', ')}" loading="lazy" />
+          <img src="${imgInfo.webformatURL}" alt="${filterDublicateValues(
+        imgInfo.tags
+      )}" loading="lazy" />
         </a>
         <div class="post-stats">
          <div class="stats-unit">
@@ -24,5 +25,14 @@ export const createGalleryCardTemplate = imgInfo => {
            <p class ="stat-amount">${imgInfo.downloads}</p>
          </div>
         </div>
-      </li>`;
+      </li>`
+    )
+    .join('');
 };
+
+function filterDublicateValues(text) {
+  return text
+    .split(', ')
+    .filter((el, ind, arr) => arr.indexOf(el) === ind)
+    .join(', ');
+}

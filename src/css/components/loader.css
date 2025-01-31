@@ -3,8 +3,8 @@
   height: 64px;
   position: relative;
   animation: rotate 1.5s ease-in infinite alternate;
-  margin: 20px auto; /* Центрування */
-  display: none; /* Спочатку лоадер прихований */
+  margin: 20px auto;
+  display: none;
 }
 .loader::before {
   content: '';

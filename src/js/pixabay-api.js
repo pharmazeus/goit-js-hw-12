@@ -1,24 +1,12 @@
 import axios from 'axios';
-export const fetchPicsByQuery = searchedQuery => {
-  const API_KEY = '48449909-94b1753e13b470dade065bce0';
-  const BASE_URL = 'https://pixabay.com/api/';
+import { config, BASE_URL } from './pixabay-config';
 
+export const fetchPicsByQuery = (searchedQuery, currentPage = 1) => {
   const searchParams = new URLSearchParams({
+    ...config,
     q: searchedQuery,
-    key: API_KEY,
-    image_type: 'photo',
-    orientation: 'horizontal',
-    safesearch: 'true',
+    page: currentPage,
   });
 
   return axios.get(`${BASE_URL}?${searchParams}`);
 };
-//old fetch
-// const url = `${BASE_URL}?${searchParams}`;
-
-// return fetch(url).then(response => {
-//   if (!response.ok) {
-//     throw new Error(response.status);
-//   }
-//   return response.json();
-// });
