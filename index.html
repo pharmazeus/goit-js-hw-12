@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hw 12 pic loader</title>
+    <!--Google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <!--Google fonts end-->
+    <script type="module" crossorigin src="/goit-js-hw-11/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/goit-js-hw-11/assets/vendor-C_7oAj77.js">
+    <link rel="stylesheet" crossorigin href="/goit-js-hw-11/assets/vendor-Dr4k8ETB.css">
+    <link rel="stylesheet" crossorigin href="/goit-js-hw-11/assets/index-D5UqErF7.css">
+  </head>
+  <body>
+    <main>
+      <!-- Loads the specified .html file -->
+      <section class="gallery-section">
+        <div class="gallery-container">
+          <div class="search-form-container">
+            <form class="form js-form">
+<input class="word-input" type="search" name="name_query" placeholder="Search images..." > 
+</input>
+<button class="search-btn" type='submit'>
+    Search
+</button>
+</form>
+
+          </div>
+          <ul class="gallery-list js-gallery"></ul>
+          <button class="next-page-btn is-hidden" type="button">Load more</button>
+          <span class="loader"></span>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
