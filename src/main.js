@@ -8,7 +8,7 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 import domRefs from './js/refs.js';
 import { createGalleryCardTemplate } from './js/render-functions';
 import { fetchPicsByQuery } from './js/pixabay-api.js';
-//
+
 const searchState = {
   query: '',
   currentPage: 1,
@@ -22,7 +22,7 @@ const simpleLightboxInstance = new SimpleLightbox('.js-gallery a', {
 const toggleLoader = isLoading => {
   domRefs.loader.style.display = isLoading ? 'block' : 'none';
 };
-//Call fn when submit
+
 const onSearchFormSubmit = async event => {
   try {
     event.preventDefault();
