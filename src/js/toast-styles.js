@@ -1,6 +1,6 @@
 export const errorToastStyles = {
   position: 'topRight',
-  timeout: 8000,
+  timeout: 6000,
   backgroundColor: '#ef4040',
   titleColor: ' #fafafb',
   messageColor: ' #fafafb',
