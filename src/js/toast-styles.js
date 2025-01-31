@@ -4,7 +4,7 @@ export const errorToastStyles = {
   backgroundColor: '#ef4040',
   titleColor: ' #fafafb',
   messageColor: ' #fafafb',
-  iconUrl: '../img/icon.svg',
+  iconUrl: './src/img/icon.svg',
 };
 
 export const warningToastStyles = {
