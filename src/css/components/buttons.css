@@ -20,6 +20,8 @@
 }
 .next-page-btn {
   width: 125px;
+  position: relative;
+  z-index: 1;
 }
 .search-btn:hover,
 .next-page-btn:hover {

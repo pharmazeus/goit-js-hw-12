@@ -44,7 +44,6 @@ const onSearchFormSubmit = async event => {
     searchState.currentPage = 1;
 
     const { data } = await fetchPicsByQuery(searchState.query, searchState.currentPage);
-
     toggleLoader(false);
 
     if (data.hits.length === 0 || data.totalHits === 0) {
@@ -59,10 +58,13 @@ const onSearchFormSubmit = async event => {
     }
 
     domRefs.galleryList.innerHTML = createGalleryCardTemplate(data.hits);
-
     simpleLightboxInstance.refresh();
 
-    domRefs.loadMoreBtn.classList.remove('is-hidden');
+    const totalPages = Math.ceil(data.totalHits / 15);
+
+    if (totalPages > 1 && data.hits.length === 15) {
+      domRefs.loadMoreBtn.classList.remove('is-hidden');
+    }
   } catch (err) {
     console.log(err);
     iziToast.error({
@@ -75,23 +77,42 @@ const onSearchFormSubmit = async event => {
 
 const onLoadMoreClick = async () => {
   searchState.currentPage += 1;
+
   toggleLoader(true);
+  domRefs.loadMoreBtn.classList.add('is-hidden');
 
   try {
     const {
       data: { hits, totalHits },
     } = await fetchPicsByQuery(searchState.query, searchState.currentPage);
 
+    const markup = createGalleryCardTemplate(hits);
+    domRefs.galleryList.insertAdjacentHTML('beforeend', markup);
+    simpleLightboxInstance.refresh();
+
+    toggleLoader(false);
+    domRefs.loadMoreBtn.classList.remove('is-hidden');
+
     const totalPages = Math.ceil(totalHits / 15);
 
-    const markup = createGalleryCardTemplate(hits);
+    const firstCard = document.querySelector('.gallery-item');
+    if (firstCard) {
+      const cardHeight = firstCard.getBoundingClientRect().height;
+      setTimeout(() => {
+        window.scrollBy({
+          top: cardHeight * 2,
+          behavior: 'smooth',
+        });
+      }, 200);
+    } else {
+      iziToast.error({
+        ...errorToastStyles,
+        title: 'Error',
+        message: 'Something went wrong... Please try again later.',
+      });
+    }
 
-    domRefs.galleryList.insertAdjacentHTML('beforeend', markup);
-
-    simpleLightboxInstance.refresh();
-    toggleLoader(false);
-
-    if (searchState.currentPage >= totalPages) {
+    if (hits.length < 15 || searchState.currentPage >= totalPages) {
       domRefs.loadMoreBtn.classList.add('is-hidden');
       iziToast.warning({
         ...warningToastStyles,
